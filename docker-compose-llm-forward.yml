@@ -1,0 +1,25 @@
+services:
+  llm-forward:
+    image: llm-forward:latest
+    container_name: llm-forward
+    ports:
+      - "9000:9000"
+    restart: always
+    environment:
+      - PORT=9000
+      - OPENAI_BASE_URL=https://api.openai.com
+      - ANTHROPIC_BASE_URL=https://api.anthropic.com
+      - GOOGLE_BASE_URL=https://generativelanguage.googleapis.com
+      - GROK_BASE_URL=https://api.x.ai
+    logging:
+      driver: "json-file"
+      options: 
+        max-size: "20m"
+        max-file: "2"
+    networks: 
+      - proxy_net
+
+networks:
+  proxy_net:
+    external: true
+    name: api-proxy_proxy_net
