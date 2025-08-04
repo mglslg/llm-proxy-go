@@ -1,6 +1,10 @@
+version: "3.8"
+
 services:
   llm-forward:
-    image: llm-forward:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     container_name: llm-forward
     ports:
       - "9000:9000"
@@ -13,10 +17,10 @@ services:
       - GROK_BASE_URL=https://api.x.ai
     logging:
       driver: "json-file"
-      options: 
+      options:
         max-size: "20m"
         max-file: "2"
-    networks: 
+    networks:
       - proxy_net
 
 networks:
