@@ -1,6 +1,6 @@
 module llm-proxy
 
-go 1.24
+go 1.18
 
 require github.com/gin-gonic/gin v1.10.0
 
